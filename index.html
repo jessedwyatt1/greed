@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Dice Game</h1>
+    <div id="gameSetup">
+        <label for="playerCount">Select number of players (2-4):</label>
+        <select id="playerCount">
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4" selected>4</option>
+        </select>
+
+        <label for="diceCount">Select number of dice (2-6):</label>
+        <select id="diceCount">
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+
+        <button id="startGame">Start Game</button>
+    </div>
+
+    <div id="gameControls" style="display: none;">
+        <button id="rollDice">Roll Dice</button>
+        <button id="bankPoints">Bank Points</button>
+    </div>
+
+    <div id="gameStatus">
+        <p id="currentPlayer">Current Player: </p>
+        <p id="rollResult">Roll Result: </p>
+        <p id="currentScores">Current Scores: </p>
+        <p id="winner">Winner: </p>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Example of how to wire up the JavaScript to the HTML
+        document.getElementById('startGame').addEventListener('click', () => {
+            const playerCount = document.getElementById('playerCount').value;
+            const diceCount = document.getElementById('diceCount').value;
+            game.initializeGame(parseInt(playerCount, 10), parseInt(diceCount, 10));
+            document.getElementById('gameSetup').style.display = 'none';
+            document.getElementById('gameControls').style.display = 'block';
+            // Update UI to reflect the game started...
+        });
+
+        document.getElementById('rollDice').addEventListener('click', () => {
+            game.playTurn();
+            // Update UI based on new game state...
+        });
+
+        document.getElementById('bankPoints').addEventListener('click', () => {
+            game.bankPoints();
+            // Update UI based on new game state...
+        });
+
+        // You'll need to add more functionality to update the UI based on game state changes
+    </script>
+</body>
+</html>
